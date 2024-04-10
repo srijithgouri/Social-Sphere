@@ -1,0 +1,22 @@
+<section class="container">
+    <h1>Edit profile</h1>
+  
+    <div id="edit-box">
+  
+      <h2>Username</h2>
+      <input type="text" [(ngModel)]="user.username" name="username" required>
+  
+      <h2>Email</h2>
+      <input type="email" [(ngModel)]="user.email" name="email" required>
+  
+      <h2>Password</h2>
+      <input type="password" [(ngModel)]="user.password" name="password" required>
+  
+      <h2>Phone number</h2>
+      <input type="tel" [(ngModel)]="user.phoneNumber" name="phoneNumber" required>
+  
+      <button type="submit" id="submit-changes" (click)="editProfile()">
+        Save changes
+      </button>
+    </div>
+  </section>

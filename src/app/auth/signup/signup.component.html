@@ -1,0 +1,72 @@
+<!-- Section: Design Block -->
+<section class="background-radial-gradient overflow-hidden">
+  
+    <div class="container px-4 py-5 px-md-5 text-center text-lg-start my-5">
+      <div class="row gx-lg-5 align-items-center mb-5">
+        <div class="col-lg-6 mb-5 mb-lg-0" style="z-index: 10">
+          <h3 class="my-5 display-5 fw-bold ls-tight" style="color: hsl(218, 81%, 95%)">
+            Dive Into Anything </h3>
+            <span style="color: hsl(218, 81%, 75%)"> SocialSphere is home to thousands of communities, endless conversation, and authentic human connection. Whether you're into breaking news, sports, TV fan theories, or a never-ending stream of the internet's cutest animals, there's a community on SocialSphere for you. </span>
+        </div>
+  
+        <div class="col-lg-6 mb-5 mb-lg-0 position-relative">
+          <div id="radius-shape-1" class="position-absolute rounded-circle shadow-5-strong"></div>
+          <div id="radius-shape-2" class="position-absolute shadow-5-strong"></div>
+  
+          <div class="card bg-glass">
+            <div class="card-body px-4 py-5 px-md-5">
+              <form [formGroup]="signupForm" (ngSubmit)="signup()">
+                
+                <!-- Email input -->
+                <div class="form-outline mb-4">
+                    <label class="form-label" for="form3Example3">Email address</label>
+                    <input type="text" [formControlName]="'email'" id="email_address" class="form-control" name="email-address" required
+                    autofocus>
+                    <span *ngIf="!signupForm.get('email')?.valid && signupForm.get('email')?.touched" style="color: red;">
+                    Please provide a valid email
+                    </span>  
+                </div>
+
+                 <!-- username input -->
+                 <div class="form-outline mb-4">
+                    <label class="form-label" for="form3Example4">User name</label>
+                    <input type="text" [formControlName]="'username'"class="form-control" ngModel required minlength="4" maxlength="20" required autofocus>
+                    <span style="color:red;" *ngIf="signupForm.get('username')?.errors?.['required'] && signupForm.get('username')?.touched">Please provide a valid Username</span> 
+                    <span style="color:red;" *ngIf="signupForm.get('username')?.errors?.['minlength'] && signupForm.get('username')?.touched">Provide atleast 4 character for User name</span>
+                </div>
+
+                <!-- Phone Number -->
+                <div class="form-outline mb-4">
+                  <label class="form-label" for="form3Example4">Phone Number</label>
+                    <input type="number" [formControlName]="'phoneNumber'"class="form-control" ngModel required minlength="10" pattern="^[6-9]\d{9}$" required autofocus>
+                    <span style="color:red;" *ngIf="signupForm.get('phoneNumber')?.errors?.['required'] && signupForm.get('phoneNumber')?.touched">Please provide phone number</span> 
+                    <span style="color:red;" *ngIf="signupForm.get('phoneNumber')?.errors?.['minlength'] && signupForm.get('phoneNumber')?.touched">Provide atleast 10 digits</span>
+                    <span style="color:red;" *ngIf="signupForm.get('phoneNumber')?.errors?.['pattern'] && signupForm.get('phoneNumber')?.touched">Phone number must start with 6, 7, 8, or 9 and have 10 digits.
+                    </span>
+                </div>
+  
+                <!-- Password input -->
+                <div class="form-outline mb-4">
+                    <label class="form-label" for="form3Example4">Password</label>
+                    <input type="password" [formControlName]="'password'" id="password" class="form-control" name="password" ngModel required pattern="^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@#$%^&+=])[A-Za-z\d@#$%!^&+=]{8,}$" required minlength="8" maxlength="20"  required>
+                    <span style="color:red;" *ngIf="signupForm.get('password')?.errors?.['required'] && signupForm.get('password')?.touched">Please provide a valid Password</span>
+                    <span style="color:red;" *ngIf="signupForm.get('password')?.errors?.['minlength'] && signupForm.get('password')?.touched">Provide atleast 8 character for Password, </span>
+                    <span style="color:red;" *ngIf="signupForm.get('password')?.errors?.['pattern'] && signupForm.get('password')?.touched">Password must contain at least one number, one uppercase , one special and a lowercase letter</span>    
+                </div>
+              
+                <!-- Submit button -->
+                <button [disabled]="!signupForm.valid" type="submit" class="btn btn-primary">
+                    Sign Up
+                </button>
+                <span style="padding-left: 15px">Existing user? <a routerLink="/login">Log In</a></span>
+                <div class="signup-failed" *ngIf='this.isError'>
+                    <p class="signup-failed-text">Signup failed. Please fill all fields and try again.</p>   
+               </div>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+  <!-- Section: Design Block -->

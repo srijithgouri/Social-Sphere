@@ -1,0 +1,67 @@
+<!-- Section: Design Block -->
+<section class="background-radial-gradient overflow-hidden">
+  
+    <div class="container px-4 py-5 px-md-5 text-center text-lg-start my-5">
+      <div class="row gx-lg-5 align-items-center mb-5">
+        <div class="col-lg-6 mb-5 mb-lg-0" style="z-index: 10">
+          <h1 class="my-5 display-5 fw-bold ls-tight" style="color: hsl(218, 81%, 95%)">
+            Welcome to SocialSphere <br />
+            <span style="color: hsl(218, 81%, 75%)"> </span>
+          </h1>
+        </div>
+  
+        <div class="col-lg-6 mb-5 mb-lg-0 position-relative">
+          <div id="radius-shape-1" class="position-absolute rounded-circle shadow-5-strong"></div>
+          <div id="radius-shape-2" class="position-absolute shadow-5-strong"></div>
+  
+          <div class="card bg-glass">
+            <div class="card-body px-4 py-5 px-md-5">
+              <form [formGroup]="loginForm" (ngSubmit)="login()">
+  
+                <!-- username input -->
+                <div class="form-outline mb-4">
+                    <label class="form-label" for="form3Example3">User name</label>
+                  <input type="text" id="user_name"  ngModel required minlength="4" maxlength="20" class="form-control" [formControlName]="'username'" name="user_name" required
+                  autofocus />
+                  
+                 <div style="color:red;" *ngIf="loginForm.get('username')?.errors?.['required'] && loginForm.get('username')?.touched">Username cannot be empty</div>
+                 <div style="color:red;" *ngIf="loginForm.get('username')?.errors?.['minlength'] && loginForm.get('username')?.touched">Provide atleast 4 character for User name</div>
+                </div>
+  
+                <!-- Password input -->
+                <div class="form-outline mb-4">
+                    <label class="form-label" for="form3Example4">Password</label>
+                    <input type="password"  id="password" class="form-control" [formControlName]="'password'" name="password" ngModel pattern="^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@#$%^&+=])[A-Za-z\d@#$%!^&+=]{8,}$" required minlength="4" maxlength="20" required>
+                    <div style="color:red;" *ngIf="loginForm.get('password')?.errors?.['required'] && loginForm.get('password')?.touched">Password cannot be empty</div>
+                    <div style="color:red;" *ngIf="loginForm.get('password')?.errors?.['minlength'] && loginForm.get('password')?.touched">Provide atleast 4 character for password</div>
+                    <div style="color:red;" *ngIf="loginForm.get('password')?.errors?.['pattern'] && loginForm.get('password')?.touched">Password must contain at least one number, one uppercase , one special and a lowercase letter</div>  
+                </div>
+                <div class="google-signin-button">
+                <asl-google-signin-button type="standard" size="large" logo_alignment="center" width="300"> </asl-google-signin-button>
+                </div>
+
+                <!-- Captcha -->
+                <div class="form-outline mb-4">
+                  <re-captcha (resolved)="checkCaptcha($event)" required siteKey="6LekHf0oAAAAAJiMuhObSTdbDlygC82YkMUkKnS6">
+                  </re-captcha>
+                </div>
+             
+                <button [disabled]="!captchaResolved" type="submit" class="btn btn-primary">
+                    Login 
+                </button>
+                <a style="padding-left: 15px" routerLink="/forgotpassword">Forgot Password?</a>
+                <span style="padding-left: 15px">New User? <a routerLink="/sign-up">SIGN UP</a></span>
+                <div class="login-failed" *ngIf='this.isError'>
+                  <p class="login-failed-text">Login Failed. Please check your credentials and try again.</p>   
+                </div>
+                <div class="login-failed" [ngStyle]="{'background-color': 'green'}" *ngIf="this.registerSuccessMessage.length > 0">
+                 <p class="register-success-text">{{registerSuccessMessage}}</p>   
+                </div> 
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+  <!-- Section: Design Block -->

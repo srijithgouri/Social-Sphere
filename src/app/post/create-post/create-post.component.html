@@ -1,0 +1,64 @@
+<div class="container">
+    <div class="row">
+      <div class="create-post-container col-md-9">
+        <form class="post-form" [formGroup]="createPostForm" (ngSubmit)="createPost()">
+          <div class="form-group">
+            <div class="create-post-heading">Create Post</div>
+            <hr />
+            <input type="text" [formControlName]="'postName'" class="form-control" style="margin-top: 5px"
+              placeholder="Title">
+  
+            <select class="form-control" style="margin-top: 10px" [formControlName]="'subredditName'">
+              <option value="" selected disabled>Select Subreddit</option>
+              <option *ngFor="let subreddit of subreddits">{{subreddit.name}}</option>
+            </select>
+
+            <div class="custom-dropzone" ngx-dropzone [multiple]="false" [accept]="'image/*'" (change)="onSelect($event)">
+                <ngx-dropzone-label>
+                    <p>Add an image</p>
+                </ngx-dropzone-label>
+                <ngx-dropzone-image-preview ngProjectAs="ngx-dropzone-preview" *ngFor="let f of files" [file]="f"
+                    [removable]="true" (removed)="onRemove(f)">
+                    <ngx-dropzone-label>{{ f.name }} ({{ f.type }})</ngx-dropzone-label>
+                </ngx-dropzone-image-preview>
+            </div>
+  
+            <editor [formControlName]="'description'" apiKey="rz7dkavittjn6wcr78pmpp9znqxibff0jwt35egyxw4onir7" [init]="{
+                        height: 500,
+                        menubar: false,
+                        statusbar: false,
+                        plugins: [
+                          'advlist autolink lists link image charmap print preview anchor',
+                          'searchreplace visualblocks code fullscreen',
+                          'insertdatetime media table paste code help wordcount'
+                        ],
+                        toolbar:
+                          'undo redo | formatselect | bold italic backcolor | \
+                          alignleft aligncenter alignright alignjustify | \
+                          bullist numlist outdent indent | removeformat | help'
+                      }"></editor>
+            <span>
+              <div style="margin-top: 5px" class="float-right">
+                <button (click)="discardPost()" class="btnDiscard">Discard</button>
+                <button class="btnCreatePost">Post</button>
+              </div>
+            </span>
+          </div>
+        </form>
+      </div>
+      <div class="col-md-3">
+        <div class="sidebar">
+          <h5 class="guidelines">Posting to SocialSphere</h5>
+          <hr />
+          <ul>
+            <li>Remember the human</li>
+            <hr />
+            <li>Behave like you would in real life</li>
+            <hr />
+            <li>Don't spam</li>
+            <hr />
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>

@@ -1,0 +1,21 @@
+<div class="reddit-body">
+    <div>
+      <div class="row">
+        <div class="col-md-2">
+          <app-app-menu (tabSelected)="loadPosts($event)"></app-app-menu>
+        </div>
+        <div class="col-md-7">
+          <app-post-tile [posts]="posts"></app-post-tile>
+          <div *ngIf="!posts || posts.length === 0" class="no-posts-message">
+            <div class="message-content">
+              Discover content in the All tab.
+            </div>
+          </div>
+        </div>
+        <div class="col-md-3">
+          <app-side-bar></app-side-bar>
+          <app-subreddit-side-bar></app-subreddit-side-bar>
+        </div>
+      </div>
+    </div>
+  </div>

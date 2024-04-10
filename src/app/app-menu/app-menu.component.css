@@ -1,0 +1,32 @@
+/* app-menu.component.css */
+.app-menu-container {
+    margin-left: 40px;
+    margin-top: 10px;
+    background-color: #ffffff; /* White background */
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  }
+  
+  .nav {
+    width: 100%;
+  }
+  
+  .nav-item {
+    width: 100%;
+    margin-bottom: 8px;
+  }
+  
+  .nav-link {
+    padding: 10px 15px; /* Slightly increased padding */
+    border-radius: 5px;
+    color: #1c1c1c; /* Dark gray text color */
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+  }
+  
+  .nav-link:hover {
+    background-color: #f6f6f6; /* Light gray background on hover */
+  }
+  

@@ -1,0 +1,32 @@
+<!-- Display Posts-->
+<div class="row post" *ngFor="let post of posts">
+  <div class="col-md-1">
+    <app-vote-button [post]="post"></app-vote-button>
+  </div>
+    <!-- Section to Display Post Information-->
+    <div class="col-md-11">
+      <span class="subreddit-info">
+        <span class="subreddit-text"><a class="posturl" routerLink="/view-subreddit/{{post.subreddit.id}}">{{post.subreddit.name}}</a></span>
+        <span> . Posted by <a class="username" [routerLink]="['/user']" [queryParams]="{ userId: post.user.userId, username: post.user.username }">{{post.user.username}}</a></span>
+        <!-- <span> . {{post.duration}}</span> -->
+      </span>
+      <hr />
+      <div class="post-title">
+        <p class="postname">{{post.postName}}</p>
+      </div>
+      <div>
+        <p class="post-text" [innerHtml]="post.description"></p>
+      </div>
+      <img class="post-image" *ngIf="post.photo" src="http://localhost:8080/api/posts/img/{{post.photo}}"/>
+      <hr />
+      <span>
+        <a class="btnCommments" (click)="goToPost(post.postId)" role="button">
+          <fa-icon [icon]="faComments"></fa-icon>
+          Comments({{post.commentCount}})
+        </a>
+        <button class="login ms-2" (click)="goToPost(post.postId)">
+          Read Post
+        </button>
+      </span>
+    </div>
+  </div>

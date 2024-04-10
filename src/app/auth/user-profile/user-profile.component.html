@@ -1,0 +1,55 @@
+
+<section id="section-profile">
+    <div id="middle" class="container">
+        <div id="profile">
+            <div id="profile-header">
+                <figure id="profile-header-photo">
+                    <img *ngIf="" src="http://localhost:8080/api/users/img/">
+                    <img src="assets/images/no-user.jpg">
+                    <figcaption>{{name}}</figcaption>
+                </figure>
+                <div id="profile-header-data">
+                    <div (click)="moveToPosts(post)">
+                        <p>{{postLength}}</p>
+                        <p>Posts</p>
+                    </div>
+                </div>
+            </div>
+
+
+            <div id="profile-buttons">
+                <button type="button" class="profile-button" [routerLink]="['/edit']" [queryParams]="{userId: userId, username: name}" *ngIf="!canFollow">
+                  <fa-icon [icon]="faPencil"></fa-icon> Update Profile
+                </button>
+                <button type="button" class="profile-button side-profile-button"  (click)="followUser()"
+                    *ngIf="canFollow && !followership">
+                    <fa-icon [icon]="faPlus"></fa-icon> Follow
+                </button>
+                <button type="button" class="profile-button side-profile-button" *ngIf="followership" (click)="unFollowUser()">
+                  <fa-icon [icon]="faMinus"></fa-icon> Unfollow
+                </button>
+            </div>
+        </div>
+
+        <hr #post>
+
+        <h3>Posts:</h3>
+        <div id="publications">
+            <app-post-tile [posts]="posts"></app-post-tile>
+        </div>
+
+        <h3>Comments:</h3>
+        <div *ngFor="let comment of comments">
+          <div class="comment">
+            <div class="username">
+              <a routerLink="/user/comment.username">{{comment.userName}}</a>
+            </div>
+            <div>
+              <p>{{comment.duration}}</p>
+            </div>
+            <b>{{comment.text}}</b>
+          </div>
+          <hr />
+        </div>
+    </div>
+</section>

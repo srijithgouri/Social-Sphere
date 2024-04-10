@@ -1,0 +1,14 @@
+<section id="section-users">
+    <div id="users">
+        <div class="user" *ngFor="let user of users">
+            <div class="user-data" [routerLink]="['/user']" [queryParams]="{ userId: user.userId, username: user.username }">
+                <img *ngIf="user?.photo" src="http://localhost:8080/api/users/img/{{user.photo}}" alt="User photo">
+                <img *ngIf="!user?.photo" src="assets/images/no-user.jpg" alt="The user has no photo">
+                <p>({{user.username}})</p>
+            </div>
+            <div class="user-buttons">
+                <button class="delete-btn" (click)="deleteUser(user.userId)"><fa-icon [icon]="faTrash"></fa-icon></button>
+            </div>
+        </div>
+    </div>
+</section>
